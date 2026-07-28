@@ -1,6 +1,6 @@
 # Automated Trading Signal & Backtesting Framework
 
-A Python-based framework for automated trading signal generation, T+1 strategy backtesting, portfolio performance evaluation, and CSV-based reporting using an RSI-VWAP trading strategy. 
+A Python-based framework for automated trading signal generation, T+1 strategy backtesting, portfolio performance evaluation, and CSV export using an RSI-VWAP trading strategy. 
 
 This project demonstrates the use of an RSI-VWAP trading strategy on 21 metal and metal-related stocks listed on the National Stock Exchange (NSE). The main purpose isn't to identify the most profitable strategy, but rather to automate the repetitive process of technical strategy backtesting and performance evaluation.
 
@@ -27,7 +27,7 @@ The objective of this project isn't demonstrating a market-beating trading strat
 
 During my internship, I noticed that backtesting a trading strategy frequently involved manually reviewing historical charts, identifying entry and exit points, and recording trades in spreadsheets for every stock.
 
-So instead of spending hours repeating the same process for every stock, I wanted to automate the entire workflow into reusable Python framework capable of:
+So instead of spending hours repeating the same process for every stock, I wanted to automate the entire workflow into a reusable Python framework capable of:
 
 - Retrieving historical market data
 - Generating trading signals automatically
@@ -99,7 +99,7 @@ Portfolio Construction
 Portfolio Performance Evaluation
         │
         ▼
-CSV Reports & Visualization
+CSV Exports & Visualization
 ```
 
 ---
@@ -148,6 +148,7 @@ These outputs can be used for additional analysis, visualization, or integration
 | NumPy | Numerical computations |
 | Matplotlib | Portfolio visualization |
 | yfinance | Historical market data retrieval |
+| datetime | Historical date range management |
 
 ---
 
@@ -199,7 +200,7 @@ Potential extensions include:
 
 - Wilder's RSI implementation
 - Intraday VWAP using minute-level market data
-- Additional technical indicators (MACD, ADX, Bollinger Bands)
+- Additional technical indicators (MACD, ADX, Bollinger Bands, Supertrend)
 - Multi-factor trading strategies
 - Position sizing and risk management
 - Portfolio rebalancing
