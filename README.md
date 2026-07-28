@@ -168,7 +168,7 @@ For every stock in the portfolio, the framework computes the technical indicator
 
 ---
 
-### Buy & Sell Recommendations
+### Actionable Trading Signals
 
 ![Buy & Sell Recommendations](images/buy_sell_recommendation.png)
 
