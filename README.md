@@ -66,6 +66,24 @@ The current implementation demonstrates the framework using a simple **RSI + VWA
 - RSI > 70
 - Closing Price < VWAP
 
+## Backtesting Assumptions
+
+This framework takes the following assumptions into consideration.
+
+| Assumption | Implementation |
+|------------|----------------|
+| Initial Capital | ₹100,000 |
+| Investment Universe | 21 NSE-listed metal and metal-related stocks |
+| Historical Data | Daily OHLCV data retrieved using Yahoo Finance (`yfinance`) |
+| Signal Generation | Signals generated after the market closes each trading day |
+| Trade Execution | Signals generated on Day T are executed at the opening price of Day T+1 |
+| Portfolio Construction | Equal-weight allocation across all securities |
+| Active Position | Multiple positions across different stocks may be held simultaneously |
+| Position Type | Long-only |
+| Shares | Whole shares only (no fractional shares) |
+| Portfolio Valuation | Daily mark-to-market using closing prices |
+| Open Positions | Any position remaining open at the end of the dataset is closed using the final available closing price to calculate complete portfolio performance |
+
 ### Trade Execution
 
 Trading signals are generated after the market closes on **Day T**.
@@ -187,22 +205,20 @@ To make the output easier to interpret, actionable BUY and SELL recommendations 
 
 ---
 
-## Assumptions & Limitations
+## Current Limitations
 
-| Category | Current Implementation |
-|-----------|------------------------|
-| RSI | 14-period Simple Moving Average (SMA) implementation |
-| VWAP | Daily approximation using daily OHLCV data |
-| Execution | Signal generated on Day T, executed on Day T+1 Open |
-| Position Type | Long-only |
-| Capital Allocation | Equal-weight across all stocks |
-| Shares | Whole shares only |
-| Portfolio Valuation | Daily mark-to-market using closing prices |
-| Transaction Costs | Not included |
-| Taxes | Not included |
-| Slippage | Not included |
-| Portfolio Rebalancing | None |
-| Data Source | Yahoo Finance (`yfinance`) |
+In order to demonstrate an automated backtesting workflow, certain real-world market considerations have been intentionally simplified. 
+
+| Limitation | Description |
+|------------|-------------|
+| RSI Calculation | Uses a 14-period Simple Moving Average (SMA) instead of Wilder's smoothing method |
+| VWAP Calculation | Uses a daily approximation based on OHLCV data rather than true intraday VWAP |
+| Transaction Costs | Brokerage fees and other transaction costs are not considered |
+| Slippage | Trade execution assumes no slippage between expected and actual execution prices |
+| Taxes | Taxes and other statutory charges are not included |
+| Portfolio Rebalancing | No periodic portfolio rebalancing is performed |
+| Position Type | Only long positions are supported |
+| Intraday Trading | The framework currently operates on daily market data only |
 
 ---
 
@@ -229,22 +245,18 @@ Automated-Trading-Signal-Backtesting-Framework/
 
 ---
 
-## Future Improvements
+## Future Enhancement 
 
 Potential extensions include:
 
 - Wilder's RSI implementation
 - Intraday VWAP using minute-level market data
 - Additional technical indicators (MACD, ADX, Bollinger Bands, Supertrend)
-- Multi-factor trading strategies
 - Position sizing and risk management
 - Portfolio rebalancing
 - Transaction cost and slippage modelling
 - Benchmark comparison against market indices
-- Hyperparameter optimization
-- Walk-forward analysis
-- Interactive dashboard using Streamlit
-
+- Benchmark comparison against a Buy-and-Hold strategy
 ---
 
 ## Disclaimer
@@ -252,4 +264,10 @@ Potential extensions include:
 This project has been developed for educational and research purposes only.
 
 The trading strategy included in this repository is intended solely to demonstrate the capabilities of the automated backtesting framework and should not be interpreted as financial advice or a recommendation to buy or sell any security.
+
+---
+
+## Feedback
+
+Constructive feedback and suggestions are always welcome.
 
