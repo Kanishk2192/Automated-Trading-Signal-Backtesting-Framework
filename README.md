@@ -23,13 +23,22 @@ The objective of this project isn't demonstrating a market-beating trading strat
 
 ---
 
+## Dynamic Market Data & Backtesting
+
+The framework automatically retrieves the latest available market data from Yahoo Finance every time it is executed.
+
+- During market hours, trading signals are generated using the latest available price from the ongoing trading session.
+- After market close, signals are generated using the official daily closing prices.
+- The backtest automatically uses a rolling one-year analysis window ending on the latest available trading day.
+- No manual modification of analysis dates is required.
+
 ## Motivation
 
 During my internship, I noticed that backtesting a trading strategy frequently involved manually reviewing historical charts, identifying entry and exit points, and recording trades in spreadsheets for every stock.
 
 So instead of spending hours repeating the same process for every stock, I wanted to automate the entire workflow into a reusable Python framework capable of:
 
-- Retrieving historical market data
+- Retrieving the latest available market data
 - Generating trading signals automatically
 - Executing realistic T+1 backtests
 - Evaluating portfolio performance
@@ -39,7 +48,7 @@ So instead of spending hours repeating the same process for every stock, I wante
 
 ## Key Features
 
-- Automatically retrieves historical market data using Yahoo Finance
+- Automatically retrieves the latest available trading session data from Yahoo Finance
 - Technical indicator calculation (RSI and VWAP)
 - Rule-based BUY and SELL signal generation
 - Realistic **T+1** trade execution
@@ -73,22 +82,25 @@ This framework takes the following assumptions into consideration.
 | Assumption | Implementation |
 |------------|----------------|
 | Initial Capital | ₹100,000 |
-| Investment Universe | 21 NSE-listed metal and metal-related stocks |
-| Historical Data | Daily OHLCV data retrieved using Yahoo Finance (`yfinance`) |
-| Signal Generation | Signals generated after the market closes each trading day |
-| Trade Execution | Signals generated on Day T are executed at the opening price of Day T+1 |
-| Portfolio Construction | Equal-weight allocation across all securities |
+| Investment Universe | 21 NSE-listed metal and metal-related stocks. |
+| Historical Data | Daily OHLCV data retrieved from Yahoo Finance. The framework automatically uses the latest available market data each time it is executed. |
+| Backtest Window | Rolling one-year backtest ending on the latest available trading day. |
+| Signal Generation | During market hours, signals are generated using the latest available price from the ongoing trading session. After market close, signals are generated using the official daily closing price. |
+| Trade Execution | Signals generated on Day T are executed at the opening price of Day T+1. |
+| Portfolio Construction | Equal-weight allocation across all securities. |
 | Active Position | Multiple positions across different stocks may be held simultaneously |
-| Position Type | Long-only |
-| Shares | Whole shares only (no fractional shares) |
-| Portfolio Valuation | Daily mark-to-market using closing prices |
-| Open Positions | Any position remaining open at the end of the dataset is closed using the final available closing price to calculate complete portfolio performance |
+| Position Type | Long-only. |
+| Shares | Whole shares only (no fractional shares). |
+| Portfolio Valuation | Daily mark-to-market using closing prices. |
+| Open Positions | Any position remaining open at the end of the dataset is closed using the final available closing price to calculate complete portfolio performance. |
 
 ### Trade Execution
 
-Trading signals are generated after the market closes on **Day T**.
+Trading signals are generated using the latest available market data retrieved from Yahoo Finance.
 
-Trades are executed at the **opening price of Day T+1**, avoiding look-ahead bias and providing a more realistic simulation of trade execution.
+During market hours, signals are generated using the latest available price from the ongoing trading session. After market close, signals are generated using the official daily closing price.
+
+Trades are executed at the opening price of the next available trading day **(T+1)**, reducing look-ahead bias and providing a more realistic simulation of trade execution.
 
 ---
 
@@ -98,7 +110,7 @@ Trades are executed at the **opening price of Day T+1**, avoiding look-ahead bia
 Yahoo Finance
         │
         ▼
-Historical OHLCV Data
+Latest available OHLCV Data
         │
         ▼
 Technical Indicator Calculation
@@ -245,7 +257,7 @@ Automated-Trading-Signal-Backtesting-Framework/
 
 ---
 
-## Future Enhancement 
+## Future Enhancements 
 
 Potential extensions include:
 
