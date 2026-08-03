@@ -65,6 +65,18 @@ So instead of spending hours repeating the same process for every stock, I wante
 
 The current implementation demonstrates the framework using a simple **RSI + VWAP** strategy.
 
+### Why this strategy?
+
+The objective of this strategy is **not** to identify the most profitable trading setup, but to show how a rule-based strategy can be automated and backtested.
+
+It combines two technical indicators:
+
+- **Relative Strength Index (RSI):** Measures momentum and identifies potentially overbought and oversold conditions.
+- **Volume Weighted Average Price (VWAP):** Acts as a trend confirmation filter by incorporating both price and trading volume.
+
+The strategy generates signals only when **both indicators agree**, reducing the likelihood of acting on a single indicator in isolation.
+
+
 ### Buy Signal
 
 - RSI < 30
